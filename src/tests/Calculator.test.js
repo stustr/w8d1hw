@@ -78,6 +78,20 @@ describe("Calculator", () => {
     expect(runningTotal.textContent).toEqual("111");
   });
 
+  it("should chain multiple operations together", () => {
+    const button1 = container.getByTestId("number1");
+    const buttonAdd = container.getByTestId("operator-add");
+    const buttonEquals = container.getByTestId("operator-equals");
+    const runningTotal = container.getByTestId("running-total");
+    fireEvent.click(button1);
+    fireEvent.click(buttonAdd);
+    fireEvent.click(button1);
+    fireEvent.click(buttonAdd);
+    fireEvent.click(button1);
+    fireEvent.click(buttonEquals);
+    expect(runningTotal.textContent).toEqual("3");
+  });
+
   it("should clear without affecting calc", () => {
     const button1 = container.getByTestId("number1");
     const button2 = container.getByTestId("number2");
